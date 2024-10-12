@@ -35,11 +35,13 @@ html {
 }
 
 body {
-  background-color:#f7f7f7;
+  background-color:white;
+  overflow-x:hidden;
 }
 
 .page-wrapper {
   height: 100%;
+  width : 100%;
   display: table;
 }
 
@@ -382,6 +384,54 @@ img {
 .slide-3 {
   background-image: url("{% static 'images/slider3.png' %}");
 }
+
+{% comment %} /* Top Brands Section */ {% endcomment %}
+
+.brand-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content:center;
+  font-size:larger;
+  background-color: white;
+  padding: 40px 0px 0px 0px;
+
+}
+
+.brand-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 0px 60px 0px 60px; /* Adjust the padding value as needed */
+}
+
+.brand-item {
+  flex: 1 0 25%;
+  text-align: center;
+  padding: 10px;
+}
+
+.brand-item img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 20px; /* Adjust the value as needed */
+}
+
+.accessories-apparels {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 200px;
+  background-color: white; /* Replace with your desired color */
+  padding: 10px 70px 40px 90px;
+}
+
+.accessories-apparels img{
+  max-width: 100%;
+  height: auto;
+  margin-right: 20px;
+  border-radius: 20px;
+}
   </style>
 
 <div class="row">
@@ -404,11 +454,35 @@ img {
 </div>
 
 {%if products%}
-<h3 style="text-align:center; color:#3E454C;">{{word}}</h3>
-<br>
+
 
 <!-- products data starttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt -->
   <div class="row">
+
+    <section class="brand-section">
+  <h2 class="section-title">Shop By Brand</h2>
+
+  <div class="brand-container">
+    <div class="brand-item">
+      <img src="static\images\test1.jpg" alt="Jordan">
+    </div>
+    <div class="brand-item">
+      <img src="static\images\test2.jpg" alt="Yeezy">
+    </div>
+    <div class="brand-item">
+      <img src="static\images\test3.jpg" alt="Nike">
+    </div>
+    <div class="brand-item">
+      <img src="static\images\test4.jpeg" alt="New Balance">
+    </div>
+  
+  </div>
+
+  <div class="accessories-apparels">
+    <img src="static\images\test5.jpg" alt="Accessories & Apparel">
+  </div>
+
+</section>
 
       {% for p in products %}
       <!-- card1 -->
@@ -456,6 +530,34 @@ img {
   {% endfor %}
 </div>
 <!-- products data enddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd -->
+
+<!-- Top Brand Section -->
+
+{% comment %} <section class="brand-section">
+  <h2 class="section-title">Shop By Brand</h2>
+
+  <div class="brand-container">
+    <div class="brand-item">
+      <img src="../assets/imgs/test1.jpg" alt="Jordan">
+    </div>
+    <div class="brand-item">
+      <img src="../assets/imgs/test2.jpg" alt="Yeezy">
+    </div>
+    <div class="brand-item">
+      <img src="../assets/imgs/test3.jpg" alt="Nike">
+    </div>
+    <div class="brand-item">
+      <img src="../assets/imgs/test4.jpeg" alt="New Balance">
+    </div>
+  
+  </div>
+
+  <div class="accessories-apparels">
+    <img src="../assets/imgs/test5.jpg" alt="Accessories & Apparel">
+  </div>
+
+</section> {% endcomment %}
+
 {%else%}
 <h3 style="text-align:center; color:#3E454C;">No Search Found</h3>
 {%endif%}
