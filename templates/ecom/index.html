@@ -427,29 +427,42 @@ img {
   <div class="row">
 
     <section class="brand-section">
-  <h2 class="section-title">Shop By Brand</h2>
-
-  <div class="brand-container">
-    <div class="brand-item">
-      <img src="static\images\test1.jpg" alt="Jordan">
-    </div>
-    <div class="brand-item">
-      <img src="static\images\test2.jpg" alt="Yeezy">
-    </div>
-    <div class="brand-item">
-      <img src="static\images\test3.jpg" alt="Nike">
-    </div>
-    <div class="brand-item">
-      <img src="static\images\test4.jpeg" alt="New Balance">
-    </div>
-  
-  </div>
-
-  <div class="accessories-apparels">
-    <img src="static\images\test5.jpg" alt="Accessories & Apparel">
-  </div>
-
-</section>
+      <h2 class="section-title">Shop By Brand</h2>
+    
+      <div class="brand-container">
+        <!-- Jordan -->
+        <div class="brand-item">
+          <a href="/search?query=Jordan"> <!-- Redirect to search with query 'Jordan' -->
+            <img src="static\images\test1.jpg" alt="Jordan">
+          </a>
+        </div>
+        <!-- Yeezy -->
+        <div class="brand-item">
+          <a href="/search?query=Yeezy"> <!-- Redirect to search with query 'Yeezy' -->
+            <img src="static\images\test2.jpg" alt="Yeezy">
+          </a>
+        </div>
+        <!-- Nike -->
+        <div class="brand-item">
+          <a href="/search?query=Nike"> <!-- Redirect to search with query 'Nike' -->
+            <img src="static\images\test3.jpg" alt="Nike">
+          </a>
+        </div>
+        <!-- New Balance -->
+        <div class="brand-item">
+          <a href="/search?query=New+Balance"> <!-- Redirect to search with query 'New Balance' -->
+            <img src="static\images\test4.jpeg" alt="New Balance">
+          </a>
+        </div>
+      </div>
+    
+      <div class="accessories-apparels">
+        <a href="/search?query=Accessories+and+Apparel"> <!-- Redirect to search with query 'Accessories and Apparel' -->
+          <img src="static\images\test5.jpg" alt="Accessories & Apparel">
+        </a>
+      </div>
+    
+    </section>
 
       {% for p in products %}
       <!-- card1 -->
@@ -503,23 +516,36 @@ img {
   <h2 class="section-title">Shop By Brand</h2>
 
   <div class="brand-container">
+    <!-- Jordan -->
     <div class="brand-item">
-      <img src="static\images\test1.jpg" alt="Jordan">
+      <a href="/search?query=Jordan"> <!-- Redirect to search with query 'Jordan' -->
+        <img src="static\images\test1.jpg" alt="Jordan">
+      </a>
     </div>
+    <!-- Yeezy -->
     <div class="brand-item">
-      <img src="static\images\test2.jpg" alt="Yeezy">
+      <a href="/search?query=Yeezy"> <!-- Redirect to search with query 'Yeezy' -->
+        <img src="static\images\test2.jpg" alt="Yeezy">
+      </a>
     </div>
+    <!-- Nike -->
     <div class="brand-item">
-      <img src="static\images\test3.jpg" alt="Nike">
+      <a href="/search?query=Nike"> <!-- Redirect to search with query 'Nike' -->
+        <img src="static\images\test3.jpg" alt="Nike">
+      </a>
     </div>
+    <!-- New Balance -->
     <div class="brand-item">
-      <img src="static\images\test4.jpeg" alt="New Balance">
+      <a href="/search?query=New+Balance"> <!-- Redirect to search with query 'New Balance' -->
+        <img src="static\images\test4.jpeg" alt="New Balance">
+      </a>
     </div>
-  
   </div>
 
   <div class="accessories-apparels">
-    <img src="static\images\test5.jpg" alt="Accessories & Apparel">
+    <a href="/search?query=Accessories+and+Apparel"> <!-- Redirect to search with query 'Accessories and Apparel' -->
+      <img src="static\images\test5.jpg" alt="Accessories & Apparel">
+    </a>
   </div>
 
 </section>
