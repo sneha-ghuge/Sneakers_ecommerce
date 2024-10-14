@@ -8,84 +8,144 @@
 
 
   <style>
-    /*---------------------------------------
-   Social section
------------------------------------------*/
-    footer {
-      padding: 0px 0px 0px 0px;
-      background-color: black;
-      margin: 0px;
-  
-    }
+footer {
+  display: flex;
+  background-color: #000;
+}
 
-    .fa {
-      font-size: 23px;
-      width: 2em;
-      height: 2em;
-      text-align: center;
-      text-decoration: none;
-      margin: 5px 2px;
-      border-radius: 50%;
-      padding-top: 0.5em;
-  }
+.footerLeft {
+    flex: 2;
+    display: flex;
+    justify-content: space-between;
+    padding: 50px;
+}
 
-    .fa:hover {
-      opacity: 0.5;
-      text-decoration: none;
-    }
+.fMenuTitle {
+    font-size: 20px;
+    height: 39px;
+    color: white;
+}
 
-    .fa-facebook {
-      background: #3B5998;
-      color: white;
-      margin-top: 30px;
-    }
+.fList {
+    padding: 0;
+    list-style: none;
+}
 
-    .fa-whatsapp {
-      background: #25d366;
-      color: white;
-    }
+.fListItem {
+    margin-bottom: 10px;
+    color: gray;
+    cursor: pointer;
+}
+.fListItem:hover{
+  color: white;
+}
 
-    .fa-twitter {
-      background: #55ACEE;
-      color: white;
-    }
+.footerRight {
+    flex: 1;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: white;
+}
 
-    .fa-instagram {
-      background: #125688;
-      color: white;
-    }
+.fInput {
+    padding: 5px;
+    width: 180px;
+}
 
-    p {
-      text-align: center;
+.fButton {
+    padding: 5px;
+    width: 70px;
+    background-color: white;
+    color: black;
+    border-radius: 20px;
+}
+.fButton:hover{
+  background-color: gray;
+  color: white;
+}
 
-    }
+.fIcons {
+    display: flex;
+    height: 30px;
+}
+
+.fIcon {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.copyright {
+    font-weight: 300;
+    font-size: 14px;
+}
+.logo {
+  padding: 20px 30px;
+  cursor: pointer;
+}
   </style>
 </head>
 
 <footer>
-  <br>
-
-  <p>
-    <a href="#" class="fa fa-facebook"></a>
-    <a href="#" class="fa fa-whatsapp"></a>
-    <a href="#" class="fa fa-instagram"></a>
-    <a href="#" class="fa fa-twitter"></a>
-  </p>
-
-  <br>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12 col-sm-12">
-        <div style="color:#ffffff;" class="wow fadeInUp footer-copyright">
-          <p>Ecommerce Site in Python using Django Framework<br>
-            &copy; 2022 Simple Ecommerce Site </p>
-        </div>
+  <a href="index.html" class="logo">
+    <img width="150" src="/static/images/trans_logo.png" alt="Logo"/>
+  </a>
+    <div class="footerLeft">
+      <div class="footerMenu">
+        <h1 class="fMenuTitle">About Us</h1>
+        <ul class="fList">
+          <li class="fListItem">Company</li>
+          <li class="fListItem">Contact</li>
+          <li class="fListItem">Careers</li>
+          <li class="fListItem">Affiliates</li>
+          <li class="fListItem">Stores</li>
+        </ul>
+      </div>
+      <div class="footerMenu">
+        <h1 class="fMenuTitle">Useful Links</h1>
+        <ul class="fList">
+          <li class="fListItem">Support</li>
+          <li class="fListItem">Refund</li>
+          <li class="fListItem">FAQ</li>
+          <li class="fListItem">Feedback</li>
+          <li class="fListItem">Stories</li>
+        </ul>
+      </div>
+      <div class="footerMenu">
+        <h1 class="fMenuTitle">Products</h1>
+        <ul class="fList">
+          <li class="fListItem">Air Force</li>
+          <li class="fListItem">Air Jordan</li>
+          <li class="fListItem">Blazer</li>
+          <li class="fListItem">Crater</li>
+          <li class="fListItem">Hippie</li>
+        </ul>
       </div>
     </div>
-  </div>
+    <div class="footerRight">
+      <div class="footerRightMenu">
+        <h1 class="fMenuTitle">Subscribe to our newsletter</h1>
+        <div class="fMail">
+          <input type="text" placeholder="your@email.com" class="fInput" />
+          <button class="fButton">Join!</button>
+        </div>
+      </div>
+      <div class="footerRightMenu">
+        <h1 class="fMenuTitle">Follow Us</h1>
+        <div class="fIcons">
+          <div class="fIcons">
+            <i class="fa-brands fa-facebook fIcon" style="color: #ffffff;"></i>
+            <i class="fa-brands fa-twitter fIcon" style="color: #ffffff;"></i>
+            <i class="fa-brands fa-instagram fIcon" style="color: #ffffff;"></i>
+            <i class="fa-brands fa-whatsapp fIcon" style="color: #ffffff;"></i>
+          </div>
+      </div>
+      <div class="footerRightMenu">
+        <span class="copyright">
+          &copy; KICKCRAZE All rights reserved <span id="year"></span>.
+        </span>
+      </div>
 </footer>
-<!--
-developed By : sumit kumar
--->
-
 </html>

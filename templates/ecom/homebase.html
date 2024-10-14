@@ -3,6 +3,14 @@
 <head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+crossorigin="anonymous"
+referrerpolicy="no-referrer"
+/>
+<link rel="icon" type="image/x-icon" href="images/favicon.ico" />
 <!-- jQuery library -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!-- Latest compiled JavaScript -->
@@ -178,65 +186,83 @@ body {
 .menu {
     cursor: pointer
 }
+footer {
+  display: flex;
+  background-color: #000;
+}
 
-        /*---------------------------------------
-           Social section
-        -----------------------------------------*/
-        footer {
-          padding: 0px 0px 0px 0px;
-          background-color: black;
-          margin: 0px;
-        }
+.footerLeft {
+    flex: 2;
+    display: flex;
+    justify-content: space-between;
+    padding: 50px;
+}
 
+.fMenuTitle {
+    font-size: 20px;
+    height: 39px;
+    color: white;
+}
 
-        #ftr {
+.fList {
+    padding: 0;
+    list-style: none;
+}
 
-          padding: 20px;
-        }
+.fListItem {
+    margin-bottom: 10px;
+    color: gray;
+    cursor: pointer;
+}
+.fListItem:hover{
+  color: white;
+}
 
-        .fa {
-          font-size: 23px;
-          width: 2em;
-          height: 2em;
-          text-align: center;
-          text-decoration: none;
-          margin: 5px 2px;
-          border-radius: 50%;
-          padding-top: 0.5em;
-      }
+.footerRight {
+    flex: 1;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: white;
+}
 
-        .fa:hover {
-          opacity: 0.5;
-          text-decoration: none;
-        }
+.fInput {
+    padding: 5px;
+    width: 180px;
+}
 
-        .fa-facebook {
-          background: #3B5998;
-          color: white;
-          margin-top: 30px;
-        }
+.fButton {
+    padding: 5px;
+    width: 70px;
+    background-color: white;
+    color: black;
+    border-radius: 20px;
+}
+.fButton:hover{
+  background-color: gray;
+  color: white;
+}
 
-        .fa-whatsapp {
-          background: #25d366;
-          color: white;
-        }
+.fIcons {
+    display: flex;
+    height: 30px;
+}
 
-        .fa-twitter {
-          background: #55ACEE;
-          color: white;
-        }
+.fIcon {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
 
-        .fa-instagram {
-          background: #125688;
-          color: white;
-        }
-
-        p {
-          text-align: center;
-
-        }
-
-
+.copyright {
+    font-weight: 300;
+    font-size: 14px;
+}
+.logo {
+  padding: 20px 30px;
+  cursor: pointer;
+}
 @media screen and (min-width: 768px) {
     .largenav {
         display: block
@@ -303,29 +329,65 @@ body {
 {% block content %}
 
 {% endblock content %}
-<!-- content end-->
-<br><br><br>
 <footer>
-  <br>
-
-  <p>
-    <a href="#" class="fa fa-facebook"></a>
-    <a href="#" class="fa fa-whatsapp"></a>
-    <a href="#" class="fa fa-instagram"></a>
-    <a href="#" class="fa fa-twitter"></a>
-  </p>
-
-  <br>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12 col-sm-12">
-        <div style="color:#ffffff;" class="wow fadeInUp footer-copyright">
-          <p>Ecommerce Site in Python using Django Framework<br>
-            &copy; 2022 Simple Ecommerce Site </p>
-        </div>
-      </div>
+  <a href="index.html" class="logo">
+    <img width="150" src="/static/images/trans_logo.png" alt="Logo"/>
+  </a>
+  <div class="footerLeft">
+    <div class="footerMenu">
+      <h1 class="fMenuTitle">About Us</h1>
+      <ul class="fList">
+        <li class="fListItem">Company</li>
+        <li class="fListItem">Contact</li>
+        <li class="fListItem">Careers</li>
+        <li class="fListItem">Affiliates</li>
+        <li class="fListItem">Stores</li>
+      </ul>
+    </div>
+    <div class="footerMenu">
+      <h1 class="fMenuTitle">Useful Links</h1>
+      <ul class="fList">
+        <li class="fListItem">Support</li>
+        <li class="fListItem">Refund</li>
+        <li class="fListItem">FAQ</li>
+        <li class="fListItem">Feedback</li>
+        <li class="fListItem">Stories</li>
+      </ul>
+    </div>
+    <div class="footerMenu">
+      <h1 class="fMenuTitle">Products</h1>
+      <ul class="fList">
+        <li class="fListItem">Air Force</li>
+        <li class="fListItem">Air Jordan</li>
+        <li class="fListItem">Blazer</li>
+        <li class="fListItem">Crater</li>
+        <li class="fListItem">Hippie</li>
+      </ul>
     </div>
   </div>
+  <div class="footerRight">
+    <div class="footerRightMenu">
+      <h1 class="fMenuTitle">Subscribe to our newsletter</h1>
+      <div class="fMail">
+        <input type="text" placeholder="your@email.com" class="fInput" />
+        <button class="fButton">Join!</button>
+      </div>
+    </div>
+    <div class="footerRightMenu">
+      <h1 class="fMenuTitle">Follow Us</h1>
+      <div class="fIcons">
+        <div class="fIcons">
+          <i class="fa-brands fa-facebook fIcon" style="color: #ffffff;"></i>
+          <i class="fa-brands fa-twitter fIcon" style="color: #ffffff;"></i>
+          <i class="fa-brands fa-instagram fIcon" style="color: #ffffff;"></i>
+          <i class="fa-brands fa-whatsapp fIcon" style="color: #ffffff;"></i>
+        </div>
+    </div>
+    <div class="footerRightMenu">
+      <span class="copyright">
+        &copy; KICKCRAZE All rights reserved <span id="year"></span>.
+      </span>
+    </div>
 </footer>
 <script>
 $(document).ready(function(){
@@ -340,8 +402,6 @@ function closeNav() {
 document.getElementById("mySidenav").style.width = "0";
 document.body.style.backgroundColor = "rgba(0,0,0,0)";
 }
-
-
 });
 </script>
 
