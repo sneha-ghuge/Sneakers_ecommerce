@@ -2,7 +2,7 @@
 {% load static %}
 <html lang="en">
 <head>
-  <title>Admin Panel - RTW Shop</title>
+  <title>Admin Panel - KICKCRAZE</title>
   <meta charset="utf-8">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -23,7 +23,7 @@
         /*---------------------------------------
            Social section
         -----------------------------------------*/
-        footer {
+        {% comment %} footer {
           padding: 0px 0px 0px 0px;
           background-color: black;
           margin: 0px;
@@ -75,7 +75,7 @@
         p {
           text-align: center;
 
-        }
+        } {% endcomment %}
   </style>
 </head>
 
@@ -112,28 +112,6 @@
   {% endblock content %}
   <!-- content end-->
 <br><br><br><br><br><br><br><br>
-  <!-- <footer>
-    <p>
-      <a id="ftr" href="#" class="fa fa-facebook"></a>
-      <a id="ftr" href="#" class="fa fa-whatsapp"></a>
-      <a id="ftr" href="#" class="fa fa-instagram"></a>
-      <a id="ftr" href="#" class="fa fa-twitter"></a>
-    </p>
-
-    <br>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12 col-sm-12">
-          <div style="color:#ffffff;" class="wow fadeInUp footer-copyright">
-            <p>
-              Copyright &copy; 2022 Simple Ecommerce Site </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer> -->
-  <!--
-  developed By : sumit kumar
-  -->
+  {% include "ecom/footer.html" %}
 </body>
 </html>
