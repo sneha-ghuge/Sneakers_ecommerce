@@ -351,8 +351,7 @@ img {
 .slide-3 {
   background-image: url("{% static 'images/slider3.png' %}");
 }
-
-{% comment %} /* Top Brands Section */ {% endcomment %}
+/* Top Brands Section */ 
 
 .brand-section {
   display: flex;
@@ -399,6 +398,68 @@ img {
   margin-right: 20px;
   border-radius: 20px;
 }
+
+.gallery {
+    margin-top: 150px;
+    padding: 10px;
+    display: flex;
+    color: white;
+    background-color: black ;
+}
+
+.galleryItem {
+    flex: 1;
+    padding: 30px;
+    text-align: center;
+}
+
+.galleryImg {
+    width: 100%;
+    height: auto; /* Keep the original size of the images */
+    margin: 0px 10px ;
+}
+
+.galleryTitle {
+    margin-bottom: 10px;
+    font-size: 40px;
+}
+
+.newSeason {
+  display: flex;
+  background-color: #eeeeee;
+  justify-content: space-between;
+  margin-bottom: 0; /* Ensure it is close to the footer */
+  padding-bottom: 0; /* Minimize padding below the section */
+}
+
+.nsItem {
+  flex: 1;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.nsImg {
+  width: auto;
+  height: 100%;
+  max-width: 100%;
+}
+
+.nsTitleSm, .nsTitle {
+  margin: 0; /* Remove excess margin to reduce spacing */
+}
+
+.nsTitleSm {
+  font-size: 25px; /* Adjust smaller heading size */
+}
+
+.nsTitle {
+  font-size: 35px;
+}
+
   </style>
 
 <div class="row">
@@ -509,6 +570,58 @@ img {
 {% endif %}
   {% endfor %}
 </div>
+
+<!-- Gallery Section -->
+<div class="gallery">
+  <div class="galleryItem">
+    <h1 class="galleryTitle">Be Yourself!</h1>
+    <img
+      src="https://images.pexels.com/photos/1476209/pexels-photo-1476209.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+      alt="guy standing"
+      class="galleryImg"
+    />
+  </div>
+  <div class="galleryItem">
+    <!-- Text moved above the image -->
+    <h1 class="galleryTitle">One Day or Day One</h1>
+    <img
+      src="https://images.pexels.com/photos/10924181/pexels-photo-10924181.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load"
+      alt="tieing shoe"
+      class="galleryImg"
+    />
+  </div>
+  <div class="galleryItem">
+    <!-- Text moved above the image -->
+    <h1 class="galleryTitle">Just Do it!</h1>
+    <img
+      src="https://images.pexels.com/photos/12607446/pexels-photo-12607446.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load"
+      alt="shoe mid run"
+      class="galleryImg"
+    />
+  </div>
+</div>
+
+<div class="newSeason">
+  <div class="nsItem">
+    <img
+      src="https://images.pexels.com/photos/4753986/pexels-photo-4753986.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+      alt=""
+      class="nsImg"
+    />
+  </div>
+  <div class="nsItem">
+    <h3 class="nsTitleSm">NEW WINTER ARRIVALS</h3>
+    <h1 class="nsTitle">New Season</h1>
+    <h1 class="nsTitle">New Collection</h1>
+  </div>
+  <div class="nsItem">
+    <img
+      src="https://images.pexels.com/photos/7856965/pexels-photo-7856965.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+      alt=""
+      class="nsImg"
+    />
+  </div>
+</div>
 <!-- products data enddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd -->
 
 {%else%}
@@ -559,8 +672,4 @@ img {
     {%endfor%}
     {%endif%}
 </script>
-<br><br><br>
-<br><br><br><br><br><br><br><br><br><br><br><br>
-
-
 {% endblock content %}
