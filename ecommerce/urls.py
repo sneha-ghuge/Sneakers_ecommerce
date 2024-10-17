@@ -36,6 +36,8 @@ urlpatterns = [
     path('customerlogin', LoginView.as_view(template_name='ecom/customerlogin.html'),name='customerlogin'),
     path('customer-home', views.customer_home_view,name='customer-home'),
     path('my-order', views.my_order_view,name='my-order'),
+    # For the shop button
+    path('shop/', views.shop_view, name='shop'),
     # path('my-order', views.my_order_view2,name='my-order'),
     path('my-profile', views.my_profile_view,name='my-profile'),
     path('edit-profile', views.edit_profile_view,name='edit-profile'),

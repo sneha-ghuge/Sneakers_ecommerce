@@ -559,3 +559,23 @@ def contactus_view(request):
             send_mail(str(name)+' || '+str(email),message, settings.EMAIL_HOST_USER, settings.EMAIL_RECEIVING_USER, fail_silently = False)
             return render(request, 'ecom/contactussuccess.html')
     return render(request, 'ecom/contactus.html', {'form':sub})
+
+
+# For shop button
+
+def shop_view(request):
+    products = models.Product.objects.all()  # Fetch all products
+
+    # Check for product IDs in cookies to count items in the cart
+    if 'product_ids' in request.COOKIES:
+        product_ids = request.COOKIES['product_ids']
+        counter = product_ids.split('|')
+        product_count_in_cart = len(set(counter))  # Count unique products in cart
+    else:
+        product_count_in_cart = 0
+
+    # Render the shop page with products and cart count
+    return render(request, 'ecom/shop.html', {
+        'products': products,
+        'product_count_in_cart': product_count_in_cart
+    })
