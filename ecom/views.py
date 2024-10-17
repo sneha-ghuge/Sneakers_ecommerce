@@ -219,7 +219,7 @@ def search_view(request):
     word="Searched Result :"
 
     if request.user.is_authenticated:
-        return render(request,'ecom/customer_home.html',{'products':products,'word':word,'product_count_in_cart':product_count_in_cart, 'search_text': query})
+        return render(request,'ecom/shop.html',{'products':products,'word':word,'product_count_in_cart':product_count_in_cart, 'search_text': query})
     return render(request,'ecom/index.html',{'products':products,'word':word,'product_count_in_cart':product_count_in_cart, 'search_text': query})
 
 
