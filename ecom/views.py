@@ -234,7 +234,7 @@ def search_view(request):
 
     if request.user.is_authenticated:
         return render(request, 'ecom/shop.html', context)
-    return render(request, 'ecom/index.html', context)
+    return render(request, 'ecom/shop.html', context)
 
 
 # any one can add product to cart, no need of signin
