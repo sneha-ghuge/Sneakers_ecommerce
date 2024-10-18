@@ -7,6 +7,13 @@ from django.contrib.auth.decorators import login_required,user_passes_test
 from django.contrib import messages
 from django.conf import settings
 
+from django.shortcuts import render, get_object_or_404
+from .models import Product
+
+def product_detail(request, pk):
+    product = get_object_or_404(Product, pk=pk)
+    return render(request, 'product_detail.html', {'product': product})
+
 def home_view(request):
     products=models.Product.objects.all()
     if 'product_ids' in request.COOKIES:
