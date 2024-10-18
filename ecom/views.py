@@ -205,22 +205,36 @@ def view_feedback_view(request):
 #------------------------ PUBLIC CUSTOMER RELATED VIEWS START ---------------------
 #---------------------------------------------------------------------------------
 def search_view(request):
-    # whatever user write in search box we get in query
-    query = request.GET['query']
-    products=models.Product.objects.all().filter(name__icontains=query)
+    # Safely get the 'query' parameter from the GET request
+    query = request.GET.get('query')  # Use .get() to avoid MultiValueDictKeyError
+
+    # If there is a query, filter products, otherwise return all products
+    if query:
+        products = models.Product.objects.filter(name__icontains=query)
+        word = "Searched Result:"
+    else:
+        products = models.Product.objects.all()
+        word = "All Products:"  # Default message when no search is performed
+
+    # Handle cart product count logic
     if 'product_ids' in request.COOKIES:
         product_ids = request.COOKIES['product_ids']
-        counter=product_ids.split('|')
-        product_count_in_cart=len(set(counter))
+        counter = product_ids.split('|')
+        product_count_in_cart = len(set(counter))
     else:
-        product_count_in_cart=0
+        product_count_in_cart = 0
 
-    # word variable will be shown in html when user click on search button
-    word="Searched Result :"
+    # Render different templates based on authentication
+    context = {
+        'products': products,
+        'word': word,
+        'product_count_in_cart': product_count_in_cart,
+        'search_text': query if query else ""
+    }
 
     if request.user.is_authenticated:
-        return render(request,'ecom/shop.html',{'products':products,'word':word,'product_count_in_cart':product_count_in_cart, 'search_text': query})
-    return render(request,'ecom/index.html',{'products':products,'word':word,'product_count_in_cart':product_count_in_cart, 'search_text': query})
+        return render(request, 'ecom/shop.html', context)
+    return render(request, 'ecom/index.html', context)
 
 
 # any one can add product to cart, no need of signin
