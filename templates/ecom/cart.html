@@ -1,4 +1,4 @@
-{% extends 'ecom/customer_base.html' %}
+
 {% load static %}
 {% block content %}
 
@@ -67,7 +67,7 @@
 </style>
 
 </head>
-
+{% include "ecom/navbar.html" %}
 <br><br><br><br>
 
 <div class="container">
@@ -114,4 +114,5 @@
 
 
 <br><br><br><br><br>
+{% include "ecom/footer.html" %}
 {% endblock content %}
