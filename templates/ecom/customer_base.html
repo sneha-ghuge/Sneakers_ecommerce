@@ -217,8 +217,18 @@ body {
                 <li class="upper-links"><a class="links" href="/shop">Shop</a></li>
                 <li class="upper-links"><a class="links" href="/my-order">Track Orders</a></li>
                 <li class="upper-links"><a class="links" href="/my-profile">Profile</a></li>
-                <li class="upper-links"><a class="links" href="/logout">Logout</a></li>
-                
+                <!-- <li class="upper-links"><a class="links" href="/logout">Logout</a></li> -->
+
+                <li class="upper-links">
+                    <form method="POST" action="{% url 'logout' %}" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" style="background:none; border:none; color:inherit; padding:0; margin:0; cursor:pointer;">
+                            Logout
+                        </button>
+                    </form>
+                </li>
+
+
             </ul>
         </div>
         <div class="row row2">
