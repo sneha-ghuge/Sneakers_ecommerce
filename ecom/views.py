@@ -12,7 +12,19 @@ from .models import Product
 
 def product_detail(request, pk):
     product = get_object_or_404(Product, pk=pk)
-    return render(request, 'product_detail.html', {'product': product})
+
+    # Calculate the cart count
+    if 'product_ids' in request.COOKIES:
+        product_ids = request.COOKIES['product_ids']
+        counter = product_ids.split('|')
+        product_count_in_cart = len(set(counter))  # Count unique product IDs
+    else:
+        product_count_in_cart = 0
+
+    return render(request, 'product_detail.html', {
+        'product': product,
+        'product_count_in_cart': product_count_in_cart  # Include cart count in the context
+    })
 
 def home_view(request):
     products=models.Product.objects.all()

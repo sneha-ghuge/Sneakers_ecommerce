@@ -1,4 +1,5 @@
 <html>
+{% load static %}
 <head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
 <!-- jQuery library -->
@@ -208,6 +209,7 @@ body {
     <div class="container">
         <div class="row row1">
             <ul class="largenav pull-right">
+                <li class="upper-links"><a class="links" href="/shop">Shop</a></li>
               <li class="upper-links dropdown"><a class="links" href="">Login & Sign Up</a>
                   <ul class="dropdown-menu">
                       <li class="profile-li"><a class="profile-links" href="/customerlogin">Login</a></li>
@@ -222,7 +224,7 @@ body {
         </div>
         <div class="row row2">
             <div class="col-sm-3">
-                <h2 style= "margin:0px;"><a href = "/"><img src="static\images\trans_logo.png" alt="logo" class="logo-img"><span class="largenav"> </span></a></h2>
+                <h2 style="margin:0px;"><a href="/"><img src="{% static 'images/trans_logo.png' %}" alt="Logo" class="logo-img"><span class="largenav"> </span></a></h2>
             </div>
 
 

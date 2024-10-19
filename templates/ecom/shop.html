@@ -1,5 +1,11 @@
-{% extends 'ecom/customer_base.html' %}
+
 {% load static %}
+
+{% if user.is_authenticated %}
+  {% include 'ecom/customer_navbar.html' %}
+{% else %}
+  {% include 'ecom/navbar.html' %}
+{% endif %}
 
 {% block content %}
 <style media="screen">
@@ -367,3 +373,4 @@ img {
 
 
 {% endblock %}
+{% include 'ecom/footer.html' %}
