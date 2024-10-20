@@ -1,8 +1,13 @@
 
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,include
 from ecom import views
 from django.contrib.auth.views import LoginView,LogoutView
+
+from django.conf import settings
+from django.conf.urls.static import static
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.home_view,name=''),
@@ -52,3 +57,6 @@ urlpatterns = [
 
     path('product/<int:pk>/', views.product_detail, name='product-detail'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
