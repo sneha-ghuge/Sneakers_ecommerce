@@ -378,7 +378,7 @@ img {
   border-radius: 20px; /* Adjust the value as needed */
 }
 
-.accessories-apparels {
+.louis-vuitton{
   display: flex;
   align-items: center;
   justify-content: center;
@@ -388,7 +388,7 @@ img {
   padding: 10px 70px 40px 90px;
 }
 
-.accessories-apparels img{
+.louis-vuitton img{
   max-width: 100%;
   height: auto;
   margin-right: 20px;
@@ -478,33 +478,47 @@ img {
 
 
   {%if products%}
-  <!-- <h3 style="text-align:center; color:#3E454C;">{{word}}</h3> -->
+  
   <!-- <br> -->
   
   <!-- products data start -->
   <div class="row">
 
-  <section class="brand-section">
+  
+<section class="brand-section">
   <h2 class="section-title">Shop By Brand</h2>
 
   <div class="brand-container">
+    <!-- Jordan -->
     <div class="brand-item">
-      <img src="static\images\test1.jpg" alt="Jordan">
+      <a href="/search?query=Jordan"> <!-- Redirect to search with query 'Jordan' -->
+        <img src="static\images\test1.jpg" alt="Jordan">
+      </a>
     </div>
+    <!-- Yeezy -->
     <div class="brand-item">
-      <img src="static\images\test2.jpg" alt="Yeezy">
+      <a href="/search?query=Yeezy"> <!-- Redirect to search with query 'Yeezy' -->
+        <img src="static\images\test2.jpg" alt="Yeezy">
+      </a>
     </div>
+    <!-- Nike -->
     <div class="brand-item">
-      <img src="static\images\test3.jpg" alt="Nike">
+      <a href="/search?query=Nike"> <!-- Redirect to search with query 'Nike' -->
+        <img src="static\images\test3.jpg" alt="Nike">
+      </a>
     </div>
+    <!-- New Balance -->
     <div class="brand-item">
-      <img src="static\images\test4.jpeg" alt="New Balance">
+      <a href="/search?query=New+Balance"> <!-- Redirect to search with query 'New Balance' -->
+        <img src="static\images\test4.jpeg" alt="New Balance">
+      </a>
     </div>
-  
   </div>
 
-  <div class="accessories-apparels">
-    <img src="static\images\test5.jpg" alt="Accessories & Apparel">
+  <div class="louis-vuitton">
+    <a href="/search?query=Louis+Vuitton"> <!-- Redirect to search with query 'Accessories and Apparel' -->
+      <img src="static\images\test6.png" alt="Louis Vuitton">
+    </a>
   </div>
 
 </section>
@@ -518,7 +532,7 @@ img {
             <div class="el-wrapper">
               <div class="box-up">
                 <a href="{% url 'product-detail' p.id %}">
-                  <img class="img" src="{% static p.product_image.url %}" alt="product pic" height="300px" width="300px">
+                  <img class="img" src="{{p.product_image.url}}" alt="product pic" height="300px" width="300px">
                 </a>
                 <!-- <img class="img" src="{% static p.product_image.url %}" alt="product pic" height="300px" width="300px"> -->
                 <div class="img-info">

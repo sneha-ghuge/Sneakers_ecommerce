@@ -314,7 +314,7 @@ img {
             <div class="el-wrapper">
               <div class="box-up">
                 <a href="{% url 'product-detail' p.id %}">
-                  <img class="img" src="{% static p.product_image.url %}" alt="product pic" height="300px" width="300px">
+                  <img class="img" src="{{p.product_image.url}}" alt="product pic" height="300px" width="300px">
                 </a>
                 <div class="img-info">
                   <div class="info-inner">
