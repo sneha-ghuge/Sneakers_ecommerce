@@ -1,5 +1,12 @@
 
 {% load static %}
+
+{% if user.is_authenticated %}
+  {% include 'ecom/customer_navbar.html' %}
+{% else %}
+  {% include 'ecom/navbar.html' %}
+{% endif %}
+
 {% block content %}
 
 {% if redirect_to %}
@@ -67,7 +74,6 @@
 </style>
 
 </head>
-{% include "ecom/navbar.html" %}
 <br><br><br><br>
 
 <div class="container">
@@ -91,7 +97,7 @@
 
       <tr>
         <td> {{p.name}}</td>
-        <td> <img src="{% static p.product_image.url %}" alt="Profile Pic" height="50px" width="50px" /></td>
+        <td> <img src="{{ p.product_image.url }}" alt="Profile Pic" height="50px" width="50px" /></td>
         <td>$ {{p.price}}</td>
         <td>{{p.description}}</td>
 
