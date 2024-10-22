@@ -90,20 +90,38 @@
       <div class="row">
         <div class="col-md-6">
           <div class="card">
-            <form class="box" method="post" enctype="multipart/form-data" onsubmit="return validatePassword()">
+            <form class="box" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
               {% csrf_token %}
               <h1>Customer Sign Up</h1>
 
-              {% render_field userForm.first_name class="form-control" placeholder="First Name" %}
-              {% render_field userForm.last_name class="form-control" placeholder="Last Name" %}
-              {% render_field userForm.username class="form-control" placeholder="Username" %}
-              {% render_field userForm.password id="password" class="form-control" placeholder="Password" %}
+              <div class="form-group">
+                {% render_field userForm.first_name class="form-control" placeholder="First Name" %}
+                <span class="text-danger first_name_error"></span>
+              </div>
               
-              <!-- Password validation message -->
-              <span id="passwordValidationMessage" class="password-validation"></span>
+              <div class="form-group">
+                {% render_field userForm.last_name class="form-control" placeholder="Last Name" %}
+                <span class="text-danger last_name_error"></span>
+              </div>
+              
+              <div class="form-group">
+                {% render_field userForm.username class="form-control" placeholder="Username" %}
+                <span class="text-danger username_error"></span>
+              </div>
+              
+              <div class="form-group">
+                {% render_field userForm.password id="password" class="form-control" placeholder="Password" %}
+                <span class="text-danger password_error"></span>
+                <span id="passwordValidationMessage" class="password-validation"></span>
+              </div>
               
               {% render_field customerForm.address class="form-control" placeholder="Address" %}
-              {% render_field customerForm.mobile class="form-control" placeholder="Contact" %}
+              
+              <div class="form-group">
+                {% render_field customerForm.mobile class="form-control" placeholder="Contact" %}
+                <span class="text-danger mobile_error"></span>
+              </div>
+
               {% render_field customerForm.profile_pic class="form-control" placeholder="Profile pic" %}
 
               <input type="submit" name="" value="Create">
@@ -114,46 +132,144 @@
     </div>
 
     <script>
+      // Validation for First Name
+      function validateFirstName() {
+        const firstName = document.querySelector('input[name="first_name"]');
+        const firstNameError = document.querySelector('.first_name_error');
+        
+        if (!firstName.value.trim()) {
+          firstNameError.innerText = 'First name is required';
+          return false;
+        } else if (firstName.value.length < 3) {
+          firstNameError.innerText = 'First name must be at least 3 characters long';
+          return false;
+        } else {
+          firstNameError.innerText = ''; // Clear error message
+          return true;
+        }
+      }
+    
+      // Validation for Last Name
+      function validateLastName() {
+        const lastName = document.querySelector('input[name="last_name"]');
+        const lastNameError = document.querySelector('.last_name_error');
+        
+        if (!lastName.value.trim()) {
+          lastNameError.innerText = 'Last name is required';
+          return false;
+        } else if (lastName.value.length < 3) {
+          lastNameError.innerText = 'Last name must be at least 3 characters long';
+          return false;
+        } else {
+          lastNameError.innerText = ''; // Clear error message
+          return true;
+        }
+      }
+    
+      // Validation for Username
+      function validateUsername() {
+        const username = document.querySelector('input[name="username"]');
+        const usernameError = document.querySelector('.username_error');
+        
+        if (!username.value.trim()) {
+          usernameError.innerText = 'Username is required';
+          return false;
+        } else if (username.value.length < 4) {
+          usernameError.innerText = 'Username must be at least 4 characters long';
+          return false;
+        } else {
+          usernameError.innerText = ''; // Clear error message
+          return true;
+        }
+      }
+    
+      // Validation for Password
       function validatePassword() {
-        const password = document.getElementById('password').value;
+        const password = document.getElementById('password');
         const passwordValidationMessage = document.getElementById('passwordValidationMessage');
-
+        
         const minLength = 8;
         const uppercasePattern = /[A-Z]/;
         const lowercasePattern = /[a-z]/;
         const numberPattern = /\d/;
         const specialCharPattern = /[!@#$%^&*(),.?":{}|<>]/;
-
-        if (password.length < minLength) {
+    
+        if (!password.value.trim()) {
+          passwordValidationMessage.textContent = "Password is required";
+          return false;
+        } else if (password.value.length < minLength) {
           passwordValidationMessage.textContent = "Password must be at least 8 characters.";
           return false;
-        }
-        if (!uppercasePattern.test(password)) {
+        } else if (!uppercasePattern.test(password.value)) {
           passwordValidationMessage.textContent = "Password must contain at least one uppercase letter.";
           return false;
-        }
-        if (!lowercasePattern.test(password)) {
+        } else if (!lowercasePattern.test(password.value)) {
           passwordValidationMessage.textContent = "Password must contain at least one lowercase letter.";
           return false;
-        }
-        if (!numberPattern.test(password)) {
+        } else if (!numberPattern.test(password.value)) {
           passwordValidationMessage.textContent = "Password must contain at least one number.";
           return false;
-        }
-        if (!specialCharPattern.test(password)) {
+        } else if (!specialCharPattern.test(password.value)) {
           passwordValidationMessage.textContent = "Password must contain at least one special character.";
           return false;
+        } else {
+          passwordValidationMessage.textContent = "Password is valid!";
+          passwordValidationMessage.classList.add("valid");
+          return true;
         }
-
-        // If all conditions are met, show success message and submit form
-        passwordValidationMessage.textContent = "Password is valid!";
-        passwordValidationMessage.classList.add("valid");
-        return true;
       }
-
-      // Real-time password validation
-      document.getElementById('password').addEventListener('input', validatePassword);
+    
+      // Validation for Contact/Mobile
+      function validateMobile() {
+        const mobile = document.querySelector('input[name="mobile"]');
+        const mobileError = document.querySelector('.mobile_error');
+        
+        const mobilePattern = /^\+?[1-9]\d{9,14}$/; // Regular expression for valid phone number format
+    
+        if (!mobile.value.trim()) {
+          mobileError.innerText = 'Contact number is required';
+          return false;
+        } else if (!mobilePattern.test(mobile.value)) {
+          mobileError.innerText = 'Enter a valid contact number';
+          return false;
+        } else {
+          mobileError.innerText = ''; // Clear error message
+          return true;
+        }
+      }
+    
+      // Main form validation
+      function validateForm() {
+        // Run validations for all fields
+        let isValid = true;
+        if (!validateFirstName()) isValid = false;
+        if (!validateLastName()) isValid = false;
+        if (!validateUsername()) isValid = false;
+        if (!validatePassword()) isValid = false;
+        if (!validateMobile()) isValid = false;
+    
+        return isValid; // Return whether the entire form is valid
+      }
+    
+      // Attach form validation to form submission
+      document.querySelector('form').addEventListener('submit', function (event) {
+        if (!validateForm()) {
+          event.preventDefault(); // Prevent form submission if validation fails
+        }
+      });
+    
+      // Attach field-specific validation on blur (when focus is lost)
+      document.querySelector('input[name="first_name"]').addEventListener('blur', validateFirstName);
+      document.querySelector('input[name="last_name"]').addEventListener('blur', validateLastName);
+      document.querySelector('input[name="username"]').addEventListener('blur', validateUsername);
+      document.getElementById('password').addEventListener('blur', validatePassword);
+      document.querySelector('input[name="mobile"]').addEventListener('blur', validateMobile);
+    
     </script>
+    
+    
+
+    <br>
     <br><br><br><br><br><br><br><br><br>
     <br><br><br><br><br><br><br><br><br>
     <br><br><br><br><br><br><br><br><br>
