@@ -10,6 +10,40 @@ from django.conf import settings
 from django.shortcuts import render, get_object_or_404
 from .models import Product
 
+#---------------------------------------------------------------------------------
+# ---------------------------Payment gateway start--------------------------------
+#---------------------------------------------------------------------------------
+
+import razorpay
+from django.views.decorators.csrf import csrf_exempt
+
+# def payment(request):
+#     # Assuming the total amount is stored in the session
+#     cart_total = request.session.get('total', 0)
+
+#     # Convert the total to paise for Razorpay (multiply by 100)
+#     cart_total_in_paise = int(cart_total * 100)
+
+#     context = {
+#         'cart_total_in_paise': cart_total_in_paise,
+#         'payment_id': '{{payment.id}}',  # Replace with actual payment ID or integrate Razorpay's order creation API
+#     }
+#     return render(request, 'payment.html', context)
+
+def payment_page(request):
+    if request.method == "POST":
+        # name = request.POST.get('name')
+        amount = 50000
+        client = razorpay.Client(auth=("rzp_test_ueBk4Mh69x7qTZ", "ld3w9PmdRBRBTaeTT2aDl9Sv"))
+        payment = client.order.create({
+            'amount': amount, 
+            'currency': 'INR',
+            'payment_capture': '1'})
+    return render(request, 'ecom/payment.html')
+#---------------------------------------------------------------------------------
+# ---------------------------Payment gateway end----------------------------------
+#---------------------------------------------------------------------------------
+
 def product_detail(request, pk):
     product = get_object_or_404(Product, pk=pk)
 

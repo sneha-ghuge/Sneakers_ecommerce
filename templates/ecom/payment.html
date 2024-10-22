@@ -1,86 +1,188 @@
-{% extends 'ecom/customer_base.html' %}
-{% load static %}
-
 {% block content %}
 <head>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
 
+        .container {
+            background-color: #fff;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            width: 450px;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .container h3 {
+            background: linear-gradient(to right, #f37254, #ff6347);
+            color: white;
+            margin: -30px -30px 20px -30px;
+            padding: 20px;
+            font-size: 26px;
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cart-summary {
+            display: flex;
+            justify-content: space-between;
+            background-color: #e0f7fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.1);
+            align-items: center;
+        }
+
+        .total-amount {
+            font-size: 20px;
+            font-weight: bold;
+            color: #00796b;
+        }
+
+        .cart-items {
+            max-height: 200px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+
+        .cart-items ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .cart-items ul li {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            background: #ffee58;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .cart-items ul li:nth-child(even) {
+            background-color: #fdd835;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #f37254;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .pay-button {
+            background-color: #ff9800;
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            width: 100%;
+            transition: background-color 0.3s ease;
+            font-weight: bold;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pay-button:hover {
+            background-color: #e65100;
+        }
+
+        .pay-button:active {
+            transform: scale(0.98);
+        }
+
+        /* Adding media queries for responsiveness */
+        @media (max-width: 480px) {
+            .container {
+                width: 90%;
+            }
+
+            .cart-summary {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .cart-items ul li {
+                flex-direction: column;
+                text-align: left;
+            }
+        }
+    </style>
 </head>
-<style media="screen">
 
-.panel-title {display: inline;font-weight: bold;}
-.checkbox.pull-right { margin: 0; }
-.pl-ziro { padding-left: 0px; }
-</style>
-<br><br>
-<center><i>This is a FAKE PAYMENT. Just for demo purpose</i></center>
-<br><br>
-<div class="container" style="text-align:center; padding-left:300px;">
-    <div class="row">
-        <div class="col-xs-12 col-md-4" style="height:500px; width:600px;">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">
-                        Payment Details
-                    </h3>
-                    <div class="checkbox pull-right">
-                        <label>
-                            <input type="checkbox" />
-                            Remember
-                        </label>
-                    </div>
-                </div>
-                <div class="panel-body">
-                    <form role="form" method="post">
-                    <div class="form-group">
-                        <label for="cardNumber">
-                            CARD NUMBER</label>
-                        <div class="input-group">
-                            <input type="text" class="form-control" id="cardNumber" placeholder="xxxx xxxx xxxx xxxx"
-                                required autofocus />
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-4 col-md-4 pull-left">
-                            <div class="form-group">
-                                <label for="cvCode">
-                                    MONTH</label>
-                                
-                                    <input type="text" class="form-control" id="expityMonth" placeholder="MM - 02" required />
-                               
-                            </div>
-                        </div>
+<body>
 
-                        <div class="col-xs-4 col-md-4">
-                            <div class="form-group">
-                                <label for="expityMonth">
-                                    EXPIRY DATE</label>
-                               
-                                
-                               
-                                    <input type="text" class="form-control" id="expityYear" placeholder="YY - 22" required /></div>
-                            
-                        </div>
-                        <div class="col-xs-4 col-md-4 pull-right">
-                            <div class="form-group">
-                                <label for="cvCode">
-                                    CV CODE</label>
-                                <input type="password" class="form-control" id="cvCode" placeholder="CV - xxx" required />
-                            </div>
-                        </div>
-                    </div>
-                    </form>
-                </div>
-            </div>
-            <ul class="nav nav-pills nav-stacked">
-                <li class="active"><a href="#"><span class="badge pull-right">{{total}}</span> Final Payment</a>
-                </li>
-            </ul>
-            <br/>
-            <a href="/payment-success" class="btn btn-success btn-lg btn-block" role="button">Pay</a>
-        </div>
+<div class="container">
+    <h3>KICKCRAZE</h3>
+
+    <div class="cart-summary">
+        <span class="total-amount">Total: ₹{{total}}</span>
     </div>
+
+    <form id="payment-form" method="POST">
+        {% csrf_token %}
+        <input type="text" name="name" id="name" required placeholder="Enter Your Name">
+        
+        <!-- Custom Pay Button -->
+        <button class="pay-button" id="rzp-button1">Pay with Razorpay</button>
+    </form>
 </div>
 
+<!-- Razorpay Integration -->
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+    document.getElementById('rzp-button1').onclick = function(e) {
+        e.preventDefault();
 
+        var options = {
+            key: "rzp_test_ueBk4Mh69x7qTZ",
+            amount: eval("{{total}} * 100"), // Amount is in currency subunits. Default is paise.
+            currency: "INR",
+            name: "KICKCRAZE",
+            description: "Sneaker Purchase",
+            image: "https://example.com/your_logo.jpg",
+            order_id: "{{ payment.id }}", // Pass the `id` obtained in the previous step
+            handler: function (response) {
+                // Handle successful payment
+                console.log(response);
+                // Redirect to payment-success page
+                window.location.href = "{% url 'payment-success' %}";  // Ensure this URL is correct
+            },
+            prefill: {
+                name: document.getElementById('name').value,
+                email: "your_email@example.com", // Replace with actual email or make it dynamic
+            },
+            theme: {
+                color: "#ff9800"
+            }
+        };
+
+        var rzp = new Razorpay(options);
+        rzp.open();
+    };
+</script>
+
+</body>
 {% endblock content %}
