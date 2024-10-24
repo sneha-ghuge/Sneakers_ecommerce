@@ -295,13 +295,56 @@ img {
   max-width: 100%;
 }
 
+.filter-container {
+    text-align: right;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    margin-right: 20px;
+  }
+
+  .filter-container select {
+    margin: 5px;
+    padding: 8px;
+    font-size: 16px;
+  }
+
+  .filter-container button {
+    padding: 8px 12px;
+    font-size: 16px;
+  }
+
+
 
   </style>
 
+
   {%if products%}
-  <!-- <h3 style="text-align:center; color:#3E454C;">{{word}}</h3> -->
+  
   <!-- <br> -->
   
+  <div class="filter-container">
+  <form method="get" action="/shop/">
+    <!-- Dropdown for Brand Names -->
+   <i class="fa-solid fa-filter fa-2x" style="color: #01060e;"></i>
+
+    <select name="brand" onchange="this.form.submit()">
+      <option value="">-- Select Brand --</option>
+      <option value="Nike" {% if request.GET.brand == 'Nike' %}selected{% endif %}>Nike</option>
+      <option value="Adidas" {% if request.GET.brand == 'Adidas' %}selected{% endif %}>Adidas</option>
+      <option value="Puma" {% if request.GET.brand == 'Puma' %}selected{% endif %}>Puma</option>
+      <option value="Dunk" {% if request.GET.brand == 'Dunk' %}selected{% endif %}>Dunk</option>
+      <option value="Jordan" {% if request.GET.brand == 'Jordan' %}selected{% endif %}>Jordan</option>
+    </select>
+
+    <!-- Sorting Dropdown -->
+    <select name="sort_by" onchange="this.form.submit()">
+      <option value="">-- Select Price --</option>
+      <option value="price" {% if request.GET.sort_by == 'price' %}selected{% endif %}>Price: Low to High</option>
+      <option value="-price" {% if request.GET.sort_by == '-price' %}selected{% endif %}>Price: High to Low</option>
+    </select>
+  </form>
+</div>
+
   <!-- products data start -->
   <div class="row">
 
@@ -355,10 +398,29 @@ img {
 
 
 {%else%}
+<div class="filter-container">
+  <form method="get" action="/shop/">
+    <!-- Dropdown for Brand Names -->
+   <i class="fa-solid fa-filter fa-2x" style="color: #01060e;"></i>
+
+    <select name="brand" onchange="this.form.submit()">
+      <option value="">-- Select Brand --</option>
+      <option value="Nike" {% if request.GET.brand == 'Nike' %}selected{% endif %}>Nike</option>
+      <option value="Adidas" {% if request.GET.brand == 'Adidas' %}selected{% endif %}>Adidas</option>
+      <option value="Puma" {% if request.GET.brand == 'Puma' %}selected{% endif %}>Puma</option>
+      <option value="Dunk" {% if request.GET.brand == 'Dunk' %}selected{% endif %}>Dunk</option>
+      <option value="Jordan" {% if request.GET.brand == 'Jordan' %}selected{% endif %}>Jordan</option>
+    </select>
+
+    <!-- Sorting Dropdown -->
+    <select name="sort_by" onchange="this.form.submit()">
+      <option value="price" {% if request.GET.sort_by == 'price' %}selected{% endif %}>Price: Low to High</option>
+      <option value="-price" {% if request.GET.sort_by == '-price' %}selected{% endif %}>Price: High to Low</option>
+    </select>
+  </form>
+</div>
 <h3 style="text-align:center; color:#3E454C;">No Search Found</h3>
 {%endif%}
-
-<!-- {% include "ecom/footer.html" %} -->
 
 <script>
     {%if messages %}

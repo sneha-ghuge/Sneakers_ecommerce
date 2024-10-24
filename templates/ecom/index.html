@@ -525,7 +525,7 @@ img {
     
     </section>
 
-      {% for p in products %}
+      {% for p in products|slice:":6" %}
       <!-- card1 -->
       <div class="column">
       <div class="container page-wrapper" style="width: 450px;">
@@ -536,7 +536,6 @@ img {
                 <a href="{% url 'product-detail' p.id %}">
                   <img class="img" src="{{p.product_image.url}}" alt="product pic" height="300px" width="300px">
                 </a>
-                <!-- <img class="img" src="{% static p.product_image.url %}" alt="product pic" height="300px" width="300px"> -->
                 <div class="img-info">
                   <div class="info-inner">
                     <span style="background-color:#3e454c; color:fbfbfb;"class="p-company">{{p.name}}</span>
@@ -657,7 +656,7 @@ img {
       </a>
     </div>
   </div>
-
+  <!-- Louis Vuitton -->
   <div class="louis-vuitton">
     <a href="/search?query=Louis+Vuitton"> <!-- Redirect to search with query 'Louis Vuitton' -->
       <img src="static\images\test6.jpg" alt="Louis Vuitton">

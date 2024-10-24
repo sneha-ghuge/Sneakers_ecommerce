@@ -523,7 +523,7 @@ img {
 
 </section>
 
-      {% for p in products %}
+      {% for p in products|slice:":6" %}
       <!-- card1 -->
       <div class="column">
       <div class="container page-wrapper" style="width: 450px;">
