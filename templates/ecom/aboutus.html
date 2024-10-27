@@ -5,25 +5,57 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Simple E-commerce</title>
+  <title>About Us | Kickcarze</title>
   <style media="screen">
-    .footer{
+    .footer {
       position: fixed;
+    }
+
+    .about-section {
+      background-color: #222;
+      color: #fff;
+      padding: 50px 20px;
+      text-align: center;
+    }
+
+    .about-section h2 {
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+
+    .about-section p {
+      font-size: 18px;
+      line-height: 1.6;
+      max-width: 800px;
+      margin: auto;
     }
   </style>
 </head>
 
 <body style="background-color:#f7f7f7;">
-  {%if request.user.is_authenticated%}
+  {% if request.user.is_authenticated %}
     {% include "ecom/customer_navbar.html" %}
-  {%else%}
+  {% else %}
     {% include "ecom/navbar.html" %}
-  {%endif%}
-  <br><br><br>
-<h3 style="text-align:center;">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." </h3>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  {% endif %}
+
+  <div class="about-section">
+    <h2>About Us</h2>
+    <p>
+      Welcome to Kickcarze, the ultimate online destination for sneaker lovers and style enthusiasts. Our platform is
+      dedicated to providing you with a carefully curated selection of high-quality sneakers that blend style, comfort,
+      and authenticity. At Kickcarze, we believe in helping you express yourself with the best footwear, whether you’re
+      looking for the latest trends or timeless classics.
+    </p>
+    <p>
+      Our mission is to make premium sneakers accessible to everyone. We are committed to delivering an exceptional
+      shopping experience, from browsing our collection to receiving your order at your doorstep. Join us on this journey to elevate your sneaker game!
+    </p>
+  </div>
+
   {% include "ecom/footer.html" %}
 </body>
 
-
 </html>
+
+
