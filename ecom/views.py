@@ -641,21 +641,22 @@ def shop_view(request):
     else:
         product_count_in_cart = 0
 
-    #filter & sorting
+    # Filter & sorting
     # Get selected brand from the query parameter
     selected_brand = request.GET.get('brand', '')  # Default to empty string if no brand selected
-    sort_by = request.GET.get('sort_by', 'price')  # Default sorting by price
+    sort_by = request.GET.get('sort_by', 'random')  # Default to random sorting if not specified
 
     # Fetch products and filter by selected brand (case-insensitive match)
-    products = Product.objects.all()
     if selected_brand:
         products = products.filter(name__icontains=selected_brand)
 
-    # Apply sorting
+    # Apply sorting or randomization
     if sort_by == 'price':
         products = products.order_by('price')
     elif sort_by == '-price':
         products = products.order_by('-price')
+    else:
+        products = products.order_by('?')  # Randomize products if no specific sorting
 
     # Render the shop page with products and cart count
     return render(request, 'ecom/shop.html', {
