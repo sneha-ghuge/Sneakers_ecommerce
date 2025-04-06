@@ -358,7 +358,13 @@ img {
             <div class="el-wrapper">
               <div class="box-up">
                 <a href="{% url 'product-detail' p.id %}">
-                  <img class="img" src="{{p.product_image.url}}" alt="product pic" height="300px" width="300px">
+                  {% comment %} <img class="img" src="{{p.product_image.url}}" alt="product pic" height="300px" width="300px"> {% endcomment %}
+                  {% if p.product_image %}
+                      <img class="img" src="{{ p.product_image.url }}" alt="Product picture" style="height: 300px; width: 300px;">
+                  {% else %}
+                      <img class="img" src="/static/product_image/default-product.png" alt="No image available" style="height: 300px; width: 300px;">
+                  {% endif %}
+
                 </a>
                 <div class="img-info">
                   <div class="info-inner">

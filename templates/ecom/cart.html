@@ -97,7 +97,14 @@
 
       <tr>
         <td> {{p.name}}</td>
-        <td> <img src="{{ p.product_image.url }}" alt="Profile Pic" height="50px" width="50px" /></td>
+        {% comment %} <td> <img src="{{ p.product_image.url }}" alt="Profile Pic" height="50px" width="50px" /></td> {% endcomment %}
+        <td>
+        {% if p.product_image %}
+                      <img class="img" src="{{ p.product_image.url }}" alt="Product picture" style="height: 50px; width: 50px;">
+                  {% else %}
+                      <img class="img" src="/static/product_image/default-product.png" alt="No image available" style="height: 50px; width: 50px;">
+                  {% endif %}
+        </td>
         <td>₹ {{p.price}}</td>
         <td>{{p.description}}</td>
 
