@@ -10,6 +10,10 @@ from django.conf import settings
 from django.shortcuts import render, get_object_or_404
 from .models import Product
 
+from django.shortcuts import get_object_or_404, render
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import linear_kernel
+
 #---------------------------------------------------------------------------------
 # ---------------------------Payment gateway start--------------------------------
 #---------------------------------------------------------------------------------
@@ -44,6 +48,19 @@ def payment_page(request):
 # ---------------------------Payment gateway end----------------------------------
 #---------------------------------------------------------------------------------
 
+def get_similar_products(current_product, all_products, top_n=20):
+    descriptions = [product.description for product in all_products]
+    tfidf = TfidfVectorizer(stop_words='english')
+    tfidf_matrix = tfidf.fit_transform(descriptions)
+
+    current_index = list(all_products).index(current_product)
+    cosine_similarities = linear_kernel(tfidf_matrix[current_index:current_index+1], tfidf_matrix).flatten()
+    similar_indices = cosine_similarities.argsort()[::-1][1:top_n+1]
+    
+    similar_products = [all_products[i] for i in similar_indices]
+    return similar_products
+
+
 def product_detail(request, pk):
     product = get_object_or_404(Product, pk=pk)
 
@@ -55,9 +72,14 @@ def product_detail(request, pk):
     else:
         product_count_in_cart = 0
 
+    # Get similar products based on description
+    all_products = list(Product.objects.exclude(id=pk))  # Exclude current product
+    similar_products = get_similar_products(product, [product] + all_products)  # current_product should be first
+
     return render(request, 'product_detail.html', {
         'product': product,
-        'product_count_in_cart': product_count_in_cart  # Include cart count in the context
+        'product_count_in_cart': product_count_in_cart,
+        'similar_products': similar_products  # Add this to context
     })
 
 def home_view(request):

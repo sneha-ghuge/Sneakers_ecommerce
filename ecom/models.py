@@ -1,5 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import linear_kernel
+
 # Create your models here.
 class Customer(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE)
@@ -69,3 +72,24 @@ class Feedback(models.Model):
     date= models.DateField(auto_now_add=True,null=True)
     def __str__(self):
         return self.name
+
+def get_similar_products(current_product, all_products, top_n=5):
+    # Build list of all descriptions
+    descriptions = [product.name for product in all_products]
+    
+    # Vectorize descriptions
+    tfidf = TfidfVectorizer(stop_words='english')
+    tfidf_matrix = tfidf.fit_transform(descriptions)
+
+    # Get index of current product
+    current_index = list(all_products).index(current_product)
+
+    # Compute cosine similarity
+    cosine_similarities = linear_kernel(tfidf_matrix[current_index:current_index+1], tfidf_matrix).flatten()
+
+    # Get indices of top similar products (excluding itself)
+    similar_indices = cosine_similarities.argsort()[::-1][1:top_n+1]
+
+    similar_products = [all_products[i] for i in similar_indices]
+
+    return similar_products
