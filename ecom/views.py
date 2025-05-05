@@ -38,7 +38,7 @@ def payment_page(request):
     if request.method == "POST":
         # name = request.POST.get('name')
         amount = 50000
-        client = razorpay.Client(auth=("rzp_test_ueBk4Mh69x7qTZ", "ld3w9PmdRBRBTaeTT2aDl9Sv"))
+        client = razorpay.Client(auth=("rzp_test_gaTf3Q9VNkvpK9", "0H4YVbmJ4gOtlKjuGgNATYdv"))
         payment = client.order.create({
             'amount': amount, 
             'currency': 'INR',
